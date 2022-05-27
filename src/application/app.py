@@ -16,28 +16,29 @@ Objetivo 2:
 """
 import psycopg2
 
-
 def connect_to_db(host,
                   user,
                   database,
                   password,
                   database_type):
-    if database_type == "postgres":
-        print(f"Conectando com o posgres: database {database}, user: {user}")
+    global conn
+
+    if database != "postgres" and "test_mysql":
+        print("Tipo de banco de dados ainda não implementado.")
+
+    if database == "postgres":
+        print(f"Conectando com o postgres: database {database}, user: {user}")
         try:
             conn = psycopg2.connect(host=host,
                                     database=database,
                                     user=user,
                                     password=password)
             print(f"Conexão com o database: {database} deu bom.")
+
         except UnboundLocalError:
             print(f"Conexão com o database: {database} não deu bom.")
-
-
-    else:
-        print(f"Tipo de banco de dados ainda não implementado.")
-
     return conn
+
 
 
 def executa_select(query, connection):
