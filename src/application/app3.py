@@ -5,8 +5,8 @@ def connect_to_db(host,
                   user,
                   database_type,
                   password,
-                  port
-                  ):
+                  port):
+
     if database_type == "mysql":
         print(f"Conectando com o MySQL: with user: {user}.")
         try:
@@ -26,7 +26,7 @@ def connect_to_db(host,
                                     user=user,
                                     password=password,
                                     port=port)
-            print(f"Conexão com o MySQL: deu bom.")
+            print(f"Conexão com o POSTGRES: deu bom.")
             return conn
         except UnboundLocalError as error:
             print(f"Fail to connect with POSTGRES with error: {error}.")
@@ -67,9 +67,10 @@ postgres_conn = connect_to_db(database_type='postgres',
                               password='postgres',
                               port="5432")
 
-# executa_query_dml(query="Create table test_mysql.test_mysql (id char, nome char)", connection=mysql_conn)
-#
-# executa_query_dml(query="Create table public.test_postgres (id char, nome char)", connection=postgres_conn)
+
+#executa_query_dml(query="Create table test_mysql.test_mysql (id char, nome char)", connection=mysql_conn)
+
+#executa_query_dml(query="Create table public.test_postgres (id char, nome char)", connection=postgres_conn)
 
 executa_query_dml(query="insert into test_mysql.test_mysql values ('1', 't')", connection=mysql_conn)
 

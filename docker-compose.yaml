@@ -1,4 +1,4 @@
-version: '3.5'
+version: '3.6'
 
 services:
   postgres:
@@ -8,7 +8,8 @@ services:
       POSTGRES_PASSWORD: postgres
     ports:
       - "5432:5432"
-
+    volumes:
+      - ./init_db/docker_postgres_init.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
 
   mysql:
     image: mysql:5.7
@@ -16,3 +17,5 @@ services:
       MYSQL_ROOT_PASSWORD: 'root'
     ports:
       - '3306:3306'
+
+
